@@ -1,0 +1,2 @@
+class Filme < ApplicationRecord
+end
