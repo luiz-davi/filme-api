@@ -25,7 +25,7 @@ class ApplicationController < ActionController::API
                     categoria = linha[10]
                     descricao = linha[11]
 
-                    novo_filme = Filme.new show_id: show_id, tipo: tipo, diretor: diretor, elenco: elenco, pais: pais, adicionado: adicionado, lancamento: lancamento, avaliacao: avaliacao, duracao: duracao, categoria: categoria, descricao: descricao
+                    novo_filme = Filme.new show_id: show_id, tipo: tipo, titulo: titulo, diretor: diretor, elenco: elenco, pais: pais, adicionado: adicionado, lancamento: lancamento, avaliacao: avaliacao, duracao: duracao, categoria: categoria, descricao: descricao
                     novo_filme.save
                 rescue Exception => e
                     erro << e

@@ -8,6 +8,18 @@ class FilmesController < ApplicationController
     render json: @filmes
   end
 
+  def filtrarAno
+    @filmes = Filme.select { |filme| filme.lancamento < 2019 }
+
+    render json: @filmes
+  end
+
+  def filtrarCategoria
+    @filmes = Filme.select { |filme| "Horro" in filme.categoria }
+
+    render json: @filmes
+  end
+
   # GET /filmes/1
   def show
     render json: @filme
