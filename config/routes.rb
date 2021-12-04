@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :filmes
-  root "filmes#index"
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  namespace :api, defaults: {formta: :json} do
+    resources :filmes
+    get 'filtrarAno', to: 'filmes#filtrarAno'
+    get 'filtrarCategoria' => 'filmes#filtrarCategoria'
+    get 'filtrarPais' => 'filmes#filtrarPais'
+  end
 end

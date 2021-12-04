@@ -1,21 +1,28 @@
-class FilmesController < ApplicationController
+class Api::FilmesController < ApplicationController
   before_action :set_filme, only: [:show, :update, :destroy]
 
+
   # GET /filmes
-  def index
-    @filmes = Filme.all
+  def index(tipo)
+    @filmes = Filme.where(tipo: tipo)
 
     render json: @filmes
   end
 
   def filtrarAno
-    @filmes = Filme.select { |filme| filme.lancamento < 2019 }
+    @filmes = Filme.select { |filme| filme.lancamento <= 2000 }
 
     render json: @filmes
   end
 
   def filtrarCategoria
-    @filmes = Filme.select { |filme| "Horro" in filme.categoria }
+    @filmes = Filme.where(tipo: "TV Show")
+
+    render json: @filmes
+  end
+
+  def filtrarPais
+    @filmes = Filme.where(pais: "Italy")
 
     render json: @filmes
   end
