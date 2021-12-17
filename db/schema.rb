@@ -13,18 +13,12 @@
 ActiveRecord::Schema.define(version: 2021_11_30_232528) do
 
   create_table "filmes", force: :cascade do |t|
-    t.string "show_id"
-    t.string "tipo"
-    t.string "titulo"
-    t.string "diretor"
-    t.text "elenco"
-    t.string "pais"
-    t.string "adicionado"
-    t.integer "lancamento"
-    t.string "avaliacao"
-    t.string "duracao"
-    t.string "categoria"
-    t.text "descricao"
+    t.string "title"
+    t.string "genre"
+    t.integer "year"
+    t.string "country"
+    t.string "published_at"
+    t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

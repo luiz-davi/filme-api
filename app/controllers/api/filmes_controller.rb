@@ -19,20 +19,14 @@ class Api::FilmesController < ApplicationController
 
             next if linha[0] == "show_id"
 
-            show_id = linha[0]
-            tipo = linha[1]
-            titulo = linha[2]
-            diretor = linha[3]
-            elenco = linha[4]
-            pais = linha[5]
-            adicionado = linha[6]
-            lancamento = linha[7]
-            avaliacao = linha[8]
-            duracao = linha[9]
-            categoria = linha[10]
-            descricao = linha[11]
+            genre = linha[1]
+            title = linha[2]
+            country = linha[5]
+            published_at = linha[6]
+            year = linha[7]
+            description = linha[11]
 
-            novo_filme = Filme.create show_id: show_id, tipo: tipo, titulo: titulo, diretor: diretor, elenco: elenco, pais: pais, adicionado: adicionado, lancamento: lancamento, avaliacao: avaliacao, duracao: duracao, categoria: categoria, descricao: descricao
+            novo_filme = Filme.create  title: title, genre: genre, year: year, country: country, published_at: published_at, description: description
         rescue Exception => e
             erro << e
         end
@@ -47,19 +41,19 @@ class Api::FilmesController < ApplicationController
   end
 
   def filtrarAno
-    @filmes = Filme.select { |filme| filme.lancamento <= 2000 }
+    @filmes = Filme.select { |filme| filme.published_at <= 2000 }
 
     render json: @filmes
   end
 
   def filtrarCategoria
-    @filmes = Filme.where(tipo: "TV Show")
+    @filmes = Filme.where(genre: "TV Show")
 
     render json: @filmes
   end
 
   def filtrarPais
-    @filmes = Filme.where(pais: "Italy")
+    @filmes = Filme.where(country: "Italy")
 
     render json: @filmes
   end
