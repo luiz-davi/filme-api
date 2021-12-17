@@ -1,12 +1,49 @@
+require 'csv'
 class Api::FilmesController < ApplicationController
   before_action :set_filme, only: [:show, :update, :destroy]
 
 
   # GET /filmes
-  def index(tipo)
-    @filmes = Filme.where(tipo: tipo)
+  def index
+    @filmes = Filme.all
 
     render json: @filmes
+  end
+
+  def povoar_banco
+    unless Filme.all.any?
+      erro = []
+      file = 'C:\Users\Augusto\Desktop\Davi\api-filmes\tmp\netflix_titles.csv'
+      CSV.foreach(file, col_sep: ",") do |linha|
+        begin
+
+            next if linha[0] == "show_id"
+
+            show_id = linha[0]
+            tipo = linha[1]
+            titulo = linha[2]
+            diretor = linha[3]
+            elenco = linha[4]
+            pais = linha[5]
+            adicionado = linha[6]
+            lancamento = linha[7]
+            avaliacao = linha[8]
+            duracao = linha[9]
+            categoria = linha[10]
+            descricao = linha[11]
+
+            novo_filme = Filme.create show_id: show_id, tipo: tipo, titulo: titulo, diretor: diretor, elenco: elenco, pais: pais, adicionado: adicionado, lancamento: lancamento, avaliacao: avaliacao, duracao: duracao, categoria: categoria, descricao: descricao
+        rescue Exception => e
+            erro << e
+        end
+      end
+
+      @filmes = Filme.all
+
+      render json: @filmes
+
+  end
+
   end
 
   def filtrarAno
