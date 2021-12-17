@@ -40,20 +40,26 @@ class Api::FilmesController < ApplicationController
 
   end
 
-  def filtrarAno
-    @filmes = Filme.select { |filme| filme.published_at <= 2000 }
+  def filtro_lancamento
+    @filmes = Filme.select { |filme| filme.year <= params[:year].to_i }
 
     render json: @filmes
   end
 
-  def filtrarCategoria
-    @filmes = Filme.where(genre: "TV Show")
+  def filtro_categoria
+    @filmes = Filme.where(genre: params[:genrer])
 
     render json: @filmes
   end
 
-  def filtrarPais
-    @filmes = Filme.where(country: "Italy")
+  def filtro_country
+    @filmes = Filme.where(country: params[:country])
+
+    render json: @filmes
+  end
+
+  def filtro_lancamento_genero
+    @filmes = Filme.find_by(year: params[:year], genre: params[:genrer])
 
     render json: @filmes
   end
