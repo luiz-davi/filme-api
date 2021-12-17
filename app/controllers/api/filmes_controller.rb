@@ -22,7 +22,7 @@ class Api::FilmesController < ApplicationController
             genre = linha[1]
             title = linha[2]
             country = linha[5]
-            published_at = linha[6]
+            published_at = Date.parse(linha[6])
             year = linha[7]
             description = linha[11]
 
