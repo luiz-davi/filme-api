@@ -1,10 +1,7 @@
 require 'csv'
 module Api
   module V1
-    class FilmesController < ApplicationController
-      before_action :set_filme, only: [:show, :update, :destroy]
-    
-    
+    class FilmesController < ApplicationController    
       # GET /filmes
       def index
         @filmes = Filme.all
@@ -14,11 +11,8 @@ module Api
     
       def povoar_banco
         SettleDbService.settle_db
-    
-        @filmes = Filme.all
-    
-        render json: @filmes
-    
+
+        render json: Filme.all, status: :created
       end
     
     
@@ -45,12 +39,6 @@ module Api
     
         render json: @filmes
       end
-    
-      # GET /filmes/1
-      def show
-        render json: @filme
-      end
-    
     end
   end
 end

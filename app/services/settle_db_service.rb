@@ -1,3 +1,5 @@
+require 'csv'
+
 class SettleDbService
 
     def self.settle_db
