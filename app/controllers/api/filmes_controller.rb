@@ -11,34 +11,14 @@ class Api::FilmesController < ApplicationController
   end
 
   def povoar_banco
-    unless Filme.all.any?
-      erro = []
-      file = 'C:\Users\Augusto\Desktop\Davi\api-filmes\tmp\netflix_titles.csv'
-      CSV.foreach(file, col_sep: ",") do |linha|
-        begin
+    SettleDbService.settle_db
 
-            next if linha[0] == "show_id"
+    @filmes = Filme.all
 
-            genre = linha[1]
-            title = linha[2]
-            country = linha[5]
-            published_at = Date.parse(linha[6])
-            year = linha[7]
-            description = linha[11]
-
-            novo_filme = Filme.create  title: title, genre: genre, year: year, country: country, published_at: published_at, description: description
-        rescue Exception => e
-            erro << e
-        end
-      end
-
-      @filmes = Filme.all
-
-      render json: @filmes
+    render json: @filmes
 
   end
 
-  end
 
   def filtro_lancamento
     @filmes = Filme.select { |filme| filme.year <= params[:year].to_i }
