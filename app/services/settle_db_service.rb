@@ -3,7 +3,7 @@ class SettleDbService
     def self.settle_db
         unless Filme.all.any?
             erro = []
-            file = '/home/luiz-davi/data/netflix_titles.csv'
+            file = '/home/luiz/filmes_data/netflix_titles.csv'
             CSV.foreach(file, col_sep: ",") do |linha|
                 begin
         
