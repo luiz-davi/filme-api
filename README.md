@@ -8,7 +8,28 @@ Projeto proposto pela [Mobile2You](https://www.mobile2you.com.br/pt/) para que e
 O objetivo principal da API é fornecer dados sobre filmes a partir dos filtros de cada endpoint, em formato JSON.
 
 ## Configurando
-A base de dados precisa ficar a parte da pasta rails do API. Baixe o arquivo [netflix_title.cs](https://drive.google.com/file/d/1Wl09Ada1qq8RFRZnGPjGqR-70qE22Uc8/view?usp=sharing), depois crie uma pasta no caminho **C:** chamada **filmes_data**, e coloque o arquivo dentro dela.
+A base de dados precisa ficar a parte da pasta rails do API. Baixe o arquivo [netflix_title.cs](https://drive.google.com/file/d/1Wl09Ada1qq8RFRZnGPjGqR-70qE22Uc8/view?usp=sharing).
++ Caso esteja no windows, colocar o aquivo na pasta
+  > C:\Users\filmes_data\netflix_title.csv (criar pastas necessárias)
++ Caso esteja no linux, colocar o aquivo na pasta
+  > /home/**nome_user_linux**/filmes_data/netflix_title.csv (criar pastas necessárias)
+
+Substituir o caminho especificado no método **settle_db** do serviço. Pode ser contrado no caminho */app/servicos/settle_db_service.rb*.
+Exemlos:
++ Usuário Windows: 
+```
+def self.settle_db
+        unless Filme.all.any?
+            erro = []
+            file = 'C:\Users\filmes_data\netflix_title.csv'
+```
++ Usuário Linux: 
+```
+def self.settle_db
+        unless Filme.all.any?
+            erro = []
+            file = '/home/luiz/filmes_data/netflix_title.csv'
+```
 
 ## Implementação
 
