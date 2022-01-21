@@ -20,20 +20,18 @@ RSpec.describe 'Filmes API', type: :request do
             get '/api/v1/filtro_lancamento', params: { year: 2000 }
 
             expect(response).to have_http_status(:ok)
-            expect(JSON.parse(response.body)).to eq(
-                [
-                    {
-                        "country"=>"United States",
-                        "description"=>
-                        "After her drunken antics result in property damage, an alcoholic journalist enters rehab – and soon meets a fellow resident who changes her outlook.",
-                        "genre"=>"Movie",
-                        "id"=>30,
-                        "published_at"=>"2020-09-30",
-                        "title"=>"28 Days",
-                        "year"=>2000
-                    }
-                ]
-            )
+            expect(JSON.parse(response.body)).to eq([
+                {
+                    "country"=>"United States",
+                    "description"=>
+                    "After her drunken antics result in property damage, an alcoholic journalist enters rehab – and soon meets a fellow resident who changes her outlook.",
+                    "genre"=>"Movie",
+                    "id"=>30,
+                    "published_at"=>"2020-09-30",
+                    "title"=>"28 Days",
+                    "year"=>2000
+                }
+            ])
         end
 
         it 'retornar erro quando parametro estiver faltando' do
@@ -66,5 +64,39 @@ RSpec.describe 'Filmes API', type: :request do
                 "error" => "param is missing or the value is empty: genrer\nDid you mean?  controller\n               action",
             })
         end
+    end
+
+    describe 'GET /filtro_country' do
+        before do
+            get '/api/v1/povoar_banco'
+        end
+    
+        it 'buscando filme pelo país' do
+            get '/api/v1/filtro_country', params: { country: "Egypt" }
+
+            expect(response).to have_http_status(:ok)
+            expect(JSON.parse(response.body)).to eq([
+                {
+                    "country"=>"Egypt",
+                    "description"=>
+                    "With the help of his friends, a man breaks out of prison in hopes of restoring a lively nightclub.",
+                    "genre"=>"Movie",
+                    "id"=>38,
+                    "published_at"=>"2019-04-18",
+                    "title"=>"30 Days of Luxury",
+                    "year"=>2016
+                }
+            ])
+        end
+
+        it 'retornar erro quando parametro estiver faltando' do
+            get '/api/v1/filtro_country', params: {  }
+
+            expect(response).to have_http_status(:unprocessable_entity)
+            expect(JSON.parse(response.body)).to eq({
+                "error" => "param is missing or the value is empty: country\nDid you mean?  controller\n               action",
+            })
+        end
+
     end
 end

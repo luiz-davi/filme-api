@@ -30,9 +30,9 @@ module Api
       end
     
       def filtro_country
-        @filmes = Filme.where(country: params[:country])
+        @filmes = Filme.where(country: params.require(:country))
     
-        render json: @filmes
+        render json: @filmes,status: :ok
       end
     
       def filtro_lancamento_genero
