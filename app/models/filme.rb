@@ -5,6 +5,6 @@ class Filme < ApplicationRecord
     validates :year, presence: true
     validates :country, presence: true
     validates :published_at, presence: true
-    validates :description, presence: true
+    validates :description, presence: true, uniqueness: true
     
 end

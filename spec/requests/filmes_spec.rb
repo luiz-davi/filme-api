@@ -36,12 +36,34 @@ RSpec.describe 'Filmes API', type: :request do
             )
         end
 
-        it 'retornar erro quando parametro stiver faltando' do
+        it 'retornar erro quando parametro estiver faltando' do
             get '/api/v1/filtro_lancamento', params: {  }
 
             expect(response).to have_http_status(:unprocessable_entity)
             expect(JSON.parse(response.body)).to eq({
                 "error" => "param is missing or the value is empty: year\nDid you mean?  action\n               controller"
+            })
+        end
+    end
+
+    describe 'GET /filtro_categoria' do
+        before do
+            get '/api/v1/povoar_banco'
+        end
+
+        it 'buscando filme pela categoria' do
+            get '/api/v1/filtro_categoria', params: { genrer: "TV Show" }
+
+            expect(response).to have_http_status(:ok)
+            expect(JSON.parse(response.body).size).to eq(25)
+        end
+
+        it 'retornar erro quando parametro estiver faltando' do
+            get '/api/v1/filtro_categoria', params: {  }
+
+            expect(response).to have_http_status(:unprocessable_entity)
+            expect(JSON.parse(response.body)).to eq({
+                "error" => "param is missing or the value is empty: genrer\nDid you mean?  controller\n               action",
             })
         end
     end
