@@ -1,7 +1,8 @@
 require 'csv'
 module Api
   module V1
-    class FilmesController < ApplicationController    
+    class FilmesController < ApplicationController
+      rescue_from ActionController::ParameterMissing, with: :parameter_missing  
       # GET /filmes
       def index
         @filmes = Filme.all
@@ -17,9 +18,9 @@ module Api
     
     
       def filtro_lancamento
-        @filmes = Filme.select { |filme| filme.year <= params[:year].to_i }
+        @filmes = Filme.select { |filme| filme.year == params.require(:year).to_i }
     
-        render json: @filmes
+        render json: @filmes, status: :ok
       end
     
       def filtro_categoria
@@ -38,6 +39,12 @@ module Api
         @filmes = Filme.find_by(year: params[:year], genre: params[:genrer])
     
         render json: @filmes
+      end
+
+      private
+
+      def parameter_missing(e)
+        render json: { error: e.message }, status: :unprocessable_entity
       end
     end
   end
