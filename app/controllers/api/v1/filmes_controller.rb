@@ -24,9 +24,9 @@ module Api
       end
     
       def filtro_categoria
-        @filmes = Filme.where(genre: params[:genrer])
+        @filmes = Filme.where(genre: params.require(:genrer))
     
-        render json: @filmes
+        render json: @filmes, status: :ok
       end
     
       def filtro_country
