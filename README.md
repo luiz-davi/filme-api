@@ -8,7 +8,7 @@ Projeto proposto pela [Mobile2You](https://www.mobile2you.com.br/pt/) para que e
 O objetivo principal da API é fornecer dados sobre filmes a partir dos filtros de cada endpoint, em formato JSON.
 
 ## Configurando
-A base de dados precisa ficar a parte da pasta raiz do API. Baixe o arquivo [netflix_title.cs](https://drive.google.com/file/d/1Wl09Ada1qq8RFRZnGPjGqR-70qE22Uc8/view?usp=sharing).
+A base de dados precisa ficar a parte da pasta raiz do API. Baixe o arquivo [netflix_title.cs](https://drive.google.com/file/d/1oxEV_CnabTh8WkKOxH_vDX4bDOSPhxGd/view?usp=sharing).
 + Caso esteja no windows, colocar o aquivo na pasta
   > C:\Users\filmes_data\netflix_title.csv (criar pastas necessárias)
 + Caso esteja no linux, colocar o aquivo na pasta
