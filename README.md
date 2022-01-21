@@ -14,8 +14,8 @@ A base de dados precisa ficar a parte da pasta raiz do API. Baixe o arquivo [net
 + Caso esteja no linux, colocar o aquivo na pasta
   > /home/**nome_user_linux**/filmes_data/netflix_title.csv (criar pastas necessárias)
 
-Substituir o caminho especificado no método **settle_db** do serviço. Pode ser contrado no caminho */app/servicos/settle_db_service.rb*.
-Exemlos:
+O povoamenoto é feito através de um serviço, nele é onde os dados do arquivo .csv são tratados e salvos no banco. É preciso substituir o caminho do arquivo .csv especificado no método **settle_db** do serviço. Ele Pode ser encontrado no caminho */app/servicos/settle_db_service.rb*. <br>
+Exemplos:
 + Usuário Windows: 
 ```
 def self.settle_db
