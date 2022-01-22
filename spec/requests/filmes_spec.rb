@@ -99,4 +99,26 @@ RSpec.describe 'Filmes API', type: :request do
         end
 
     end
+
+    describe 'GET filtro_title' do
+        before do
+            get '/api/v1/povoar_banco'
+        end
+
+        it 'buscando filme pelo titulo' do
+            get '/api/v1/filtro_title', params: { title: '13 Sins'}
+
+            expect(response).to have_http_status(:ok)
+            expect(JSON.parse(response.body)).to eq({
+                "country"=>"United States", 
+                "description"=>"A man agrees to appear on a game show with a $6 million prize. But as the challenges become more extreme, he realizes he's made a grave mistake.", 
+                "genre"=>"Movie", 
+                "id"=>2, 
+                "published_at"=>"2019-01-13", 
+                "title"=>"13 Sins", 
+                "year"=>2014
+            })
+        end
+        
+    end
 end

@@ -35,10 +35,10 @@ module Api
         render json: @filmes,status: :ok
       end
     
-      def filtro_lancamento_genero
-        @filmes = Filme.find_by(year: params[:year], genre: params[:genrer])
+      def filtro_title
+        @filmes = Filme.find_by(title: params.require(:title))
     
-        render json: @filmes
+        render json: @filmes, status: :ok
       end
 
       private
