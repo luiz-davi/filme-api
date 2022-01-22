@@ -119,6 +119,15 @@ RSpec.describe 'Filmes API', type: :request do
                 "year"=>2014
             })
         end
+
+        it 'retornar erro quando parametro estiver faltando' do
+            get '/api/v1/filtro_title', params: {  }
+
+            expect(response).to have_http_status(:unprocessable_entity)
+            expect(JSON.parse(response.body)).to eq({
+                "error" => "param is missing or the value is empty: title\nDid you mean?  controller\n               action",
+            })
+        end
         
     end
 end
