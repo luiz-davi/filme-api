@@ -14,7 +14,7 @@ A base de dados precisa ficar a parte da pasta raiz do API. Baixe o arquivo [net
 + Caso esteja no linux, colocar o aquivo na pasta
   > /home/**nome_user_linux**/filmes_data/netflix_title.csv (criar pastas necessárias)
 
-O povoamenoto é feito através de um serviço, nele é onde os dados do arquivo .csv são tratados e salvos no banco. É preciso substituir o caminho do arquivo .csv especificado no método **settle_db** do serviço. Ele Pode ser encontrado no caminho */app/servicos/settle_db_service.rb*. <br>
+O povoamenoto é feito através de um serviço, nele é onde os dados do arquivo .csv são tratados e salvos no banco. É preciso substituir o caminho do arquivo .csv especificado no método **settle_db** do serviço. Ele pode ser encontrado no caminho */app/servicos/settle_db_service.rb*. <br>
 Exemplos:
 + Usuário Windows: 
 ```
@@ -30,9 +30,6 @@ def self.settle_db
             erro = []
             file = '/home/luiz/filmes_data/netflix_title.csv'
 ```
-
-## Implementação
-
 ## END POINTS 🔍
 + (GET) /api/v1/povoar_banco <br> <br>
   > Exemplo: <br>
@@ -54,8 +51,7 @@ def self.settle_db
 Ferramentas | Versões
 ----------- | ----------
 Ruby        | 3.0.1
-Rails       | 6.1.4.4
+Rails       | 6.1.4
 Git         | 2.25
 Rspec       | 3.10
-
-
+Rubocop     | 1.25
