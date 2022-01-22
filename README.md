@@ -34,10 +34,21 @@ def self.settle_db
 ## Implementação
 
 ## END POINTS 🔍
-+ (GET) /api/v1/settle <br>
-+ (GET) /api/v1/filtro1 <br>
-+ (GET) /api/v1/filtro2 <br>
-+ (GET) /api/v1/filtro" <br>
++ (GET) /api/v1/povoar_banco <br> <br>
+  > Exemplo: <br>
+  > curl --request GET http://localhost:3000/api/v1/povoar_banco 
++ (GET) /api/v1/filtro_lancamento <br> <br>
+  > Exemplo: <br>
+  > curl --request GET http://localhost:3000/api/v1/filtro_lancamento -H "Content-Type: application/json" -d '{ "year": **year** }' -v
++ (GET) /api/v1/categoria <br> <br>
+   > Exemplo: <br>
+   > curl --request GET http://localhost:3000/api/v1/filtro_categoria -H "Content-Type: application/json" -d '{ "genrer": **genrer** }' -v
++ (GET) /api/v1/filtro_country <br><br>
+   > Exemplo: <br>
+   > curl --request GET http://localhost:3000/api/v1/filtro_contry -H "Content-Type: application/json" -d '{ "country": **country** }' -v
++ (GET) /api/v1/filtro_title <br><br>
+   > Exemplo: <br>
+   > curl --request GET http://localhost:3000/api/v1/filtro_title -H "Content-Type: application/json" -d '{ "title": **title** }' -v
 ## Ferramentas e versões
 
 Ferramentas | Versões
