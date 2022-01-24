@@ -11,10 +11,10 @@ O objetivo principal da API é fornecer dados sobre filmes a partir dos filtros 
 A base de dados precisa ficar a parte da pasta raiz do API. Baixe o arquivo [netflix_title.cs](https://drive.google.com/file/d/1oxEV_CnabTh8WkKOxH_vDX4bDOSPhxGd/view?usp=sharing).
 + Caso esteja no windows, colocar o aquivo na pasta
   > C:\Users\filmes_data\netflix_title.csv (criar pastas necessárias)
-+ Caso esteja no linux, colocar o aquivo na pasta
++ Caso esteja no linux, colocar o aquivo na pasta (atencção: colocar o nome do seu usuário linux)
   > /home/**nome_user_linux**/filmes_data/netflix_title.csv (criar pastas necessárias)
 
-O povoamenoto é feito através de um serviço, nele é onde os dados do arquivo .csv são tratados e salvos no banco. É preciso substituir o caminho do arquivo .csv especificado no método **settle_db** do serviço. Ele pode ser encontrado no caminho */app/servicos/settle_db_service.rb*. <br>
+O povoamenoto é feito através de um serviço, nele é onde os dados do arquivo .csv são tratados e salvos no banco. É preciso substituir o caminho do arquivo .csv especificado no método **.settle_db** do serviço. Ele pode ser encontrado no caminho */app/services/settle_db_service.rb*. <br>
 Exemplos:
 + Usuário Windows: 
 ```
@@ -33,7 +33,7 @@ def self.settle_db
 ## END POINTS 🔍
 + (GET) /api/v1/povoar_banco <br> <br>
   > Exemplo: <br>
-  > curl --request GET http://localhost:3000/api/v1/povoar_banco 
+  > curl --request GET http://localhost:3000/api/v1/povoar_banco -v
 + (GET) /api/v1/filtro_lancamento <br> <br>
   > Exemplo: <br>
   > curl --request GET http://localhost:3000/api/v1/filtro_lancamento -H "Content-Type: application/json" -d '{ "year": **year** }' -v
